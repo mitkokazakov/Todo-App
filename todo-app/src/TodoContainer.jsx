@@ -12,7 +12,7 @@ const TodoContainer = () => {
       <div className=" flex justify-between items-center w-full">
         <p className=" text-3xl font-bold tracking-widest">T O D O</p>
 
-        <img className="w-6 h-6" src={sun} alt="" />
+        <img className="w-6 h-6 cursor-pointer" src={sun} alt="" />
       </div>
 
       <div className="w-full flex items-center bg-[#25273c] text-white rounded-md pl-3">
