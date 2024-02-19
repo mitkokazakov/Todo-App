@@ -5,9 +5,9 @@ import cross from "./images/icon-cross.svg";
 
 const TodoContainer = () => {
   return (
-    <div className="w-[90%] mr-auto ml-auto text-white flex flex-col justify-center items-center gap-5">
+    <div className="w-[90%] mr-auto ml-auto text-white flex flex-col justify-center items-center gap-5 absolute top-10 right-0 left-0 ">
       <div className=" flex justify-between items-center w-full">
-        <p className=" text-3xl font-bold tracking-widest">TODO</p>
+        <p className=" text-3xl font-bold tracking-widest">T O D O</p>
 
         <img className="w-6 h-6" src={sun} alt="" />
       </div>
@@ -23,45 +23,45 @@ const TodoContainer = () => {
         />
       </div>
 
-      <div className="w-full rounded-md flex flex-col divide-y divide-[#36384d]">
-        <div className="w-full flex items-center bg-[#25273c] text-white pt-5 pb-5 pl-3">
+      <div className="w-full rounded- flex flex-col divide-y divide-[#36384d]">
+        <div className="w-full flex items-center bg-[#25273c] text-[#b2b4cd] pt-5 pb-5 pl-3">
           <div>
             <div className="w-6 h-6 bg-transparent rounded-full border-[2px] border-[#323449]"></div>
           </div>
-          <p className="w-full bg-transparent ml-3"> Morning run on the lake</p>
+          <p className="w-full bg-transparent ml-3 tracking-wider"> Morning run on the lake</p>
           <img className="pr-5" src={cross} alt="" />
         </div>
 
-        <div className="w-full flex items-center bg-[#25273c] text-white pt-5 pb-5 pl-3">
+        <div className="w-full flex items-center bg-[#25273c] text-[#b2b4cd] pt-5 pb-5 pl-3">
           <div>
             <div className="w-6 h-6 bg-transparent rounded-full border-[2px] border-[#323449]"></div>
           </div>
-          <p className="w-full bg-transparent pl-3"> Morning run on the lake</p>
+          <p className="w-full bg-transparent pl-3 tracking-wider"> Morning run on the lake</p>
           <img className="pr-5" src={cross} alt="" />
         </div>
 
-        <div className="w-full flex items-center bg-[#25273c] text-white pt-5 pb-5 pl-3">
+        <div className="w-full flex items-center bg-[#25273c] text-[#b2b4cd] pt-5 pb-5 pl-3">
           <div>
             <div className="w-6 h-6 bg-transparent rounded-full border-[2px] border-[#323449]"></div>
           </div>
-          <p className="w-full bg-transparent pl-3"> Morning run on the lake</p>
+          <p className="w-full bg-transparent pl-3 tracking-wider"> Morning run on the lake</p>
           <img className="pr-5" src={cross} alt="" />
         </div>
 
-        <div>
-          <p>5 items left</p>
+        <div className="w-full flex justify-between items-center bg-[#25273c] text-[#51526e] pt-5 pb-5 pl-3 pr-5 shadow-2xl">
+          <p className=" tracking-widest text-[14px]">5 items left</p>
 
-          <p>Clear Completed</p>
+          <p className=" tracking-widest text-[14px]">Clear Completed</p>
         </div>
       </div>
 
-      <div>
-        <p>All</p>
-        <p>Active</p>
-        <p>Completed</p>
+      <div className="w-full flex justify-center items-center gap-5 bg-[#25273c] text-[#4c4e63] pt-5 pb-5 pl-3 pr-5 shadow-2xl">
+        <p className=" tracking-widest text-[16px] hover:text-[#4d7ad2]">All</p>
+        <p className=" tracking-widest text-[16px] hover:text-[#4d7ad2]">Active</p>
+        <p className=" tracking-widest text-[16px] hover:text-[#4d7ad2]">Completed</p>
       </div>
 
-      <p>Drag and Drop to reorder</p>
+      <p className="text-[#4c4e63] mt-10 tracking-wide">Drag and drop to reorder the list</p>
     </div>
   );
 };
