@@ -22,7 +22,7 @@ const SingleTask = ({isChecked}) => {
                 <img className={`absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] ${checked ? 'opacity-100' : 'opacity-0'} duration-500`} src={check} alt="" />
             </div>
           </div>
-          <p className="w-full bg-transparent ml-3 tracking-wider"> Morning run on the lake</p>
+          <p className={`w-full bg-transparent ml-3 tracking-wider duration-500 ${checked ? 'line-through text-[#4c4e63]' : ''}`}> Morning run on the lake</p>
           <img className="pr-5 opacity-0 cursor-pointer group-hover:opacity-100 duration-500" src={cross} alt="" />
         </div>
   )
