@@ -8,7 +8,7 @@ The designs were created to the following widths:
 - Desktop: 1440px
 
 ## Colors
-
+bg-gradient-to-r from-[#70bdfb] to-[#a476e8]
 ### Primary
 
 - Bright Blue: hsl(220, 98%, 61%)
