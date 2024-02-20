@@ -7,18 +7,25 @@ import todo from './todolist.js';
 
 const TodoContainer = () => {
 
-  const [activeState, setActiveState] = useState();
+  const [activeState, setActiveState] = useState(1);
 
   const [todolist, setTodolist] = useState(todo);
-
-  const [filteredTodo, setFiltered] = useState();
 
   useEffect(() => {
 
     setTodolist(todo);
-  }, [todolist]);
+  }, [todolist,activeState]);
 
   console.log(todolist);
+
+  function FilterOnlyCompletedTasks(){
+
+    setTodolist(t => {
+      return t.filter((task) => {
+        return task.isFinished == true;
+      })
+    });
+  }
 
   return (
     <div className="w-[90%] mr-auto ml-auto text-white flex flex-col justify-center items-center gap-5 translate-y-[-150px] md:w-[700px] md:translate-y-[-200px]">
@@ -42,10 +49,22 @@ const TodoContainer = () => {
       <div className="w-full rounded-md overflow-hidden flex flex-col divide-y divide-[#36384d]">
 
         
-        {
+        { activeState == 1 ?
           todo.filter((t) => { return t.isDeleted == false}).map(t => {
             return <SingleTask key={t.id} title={t.title} id={t.id} isChecked={t.isFinished} setTodo={setTodolist}/>
-          })
+          }) : null
+        }
+
+        { activeState == 2 ?
+          todo.filter((t) => { return t.isFinished == false && t.isDeleted == false}).map(t => {
+            return <SingleTask key={t.id} title={t.title} id={t.id} isChecked={t.isFinished} setTodo={setTodolist}/>
+          }) : null
+        }
+
+        { activeState == 3 ?
+          todo.filter((t) => { return t.isFinished == true && t.isDeleted == false}).map(t => {
+            return <SingleTask key={t.id} title={t.title} id={t.id} isChecked={t.isFinished} setTodo={setTodolist}/>
+          }) : null
         }
 
 
@@ -54,9 +73,9 @@ const TodoContainer = () => {
           <p className=" tracking-widest text-[14px]">5 items left</p>
 
           <div className=" hidden md:flex justify-center items-center gap-5 bg-[#25273c] text-[#4c4e63] ">
-            <p onClick={() => { setActiveState(0) }} className={`tracking-widest cursor-pointer text-[16px] ${activeState == 0 ? 'text-[#4d7ad2] hover:text-[#4d7ad2]' : 'hover:text-white'}`}>All</p>
-            <p onClick={() => { setActiveState(1) }} className={`tracking-widest cursor-pointer text-[16px] ${activeState == 1 ? 'text-[#4d7ad2] hover:text-[#4d7ad2]' : 'hover:text-white'}`}>Active</p>
-            <p onClick={() => { setActiveState(2) }} className={`tracking-widest cursor-pointer text-[16px] ${activeState == 2 ? 'text-[#4d7ad2] hover:text-[#4d7ad2]' : 'hover:text-white'}`}>Completed</p>
+            <p onClick={() => { setActiveState(1) }} className={`tracking-widest cursor-pointer text-[16px] ${activeState == 1 ? 'text-[#4d7ad2] hover:text-[#4d7ad2]' : 'hover:text-white'}`}>All</p>
+            <p onClick={() => { setActiveState(2) }} className={`tracking-widest cursor-pointer text-[16px] ${activeState == 2 ? 'text-[#4d7ad2] hover:text-[#4d7ad2]' : 'hover:text-white'}`}>Active</p>
+            <p onClick={() => { setActiveState(3) }} className={`tracking-widest cursor-pointer text-[16px] ${activeState == 3 ? 'text-[#4d7ad2] hover:text-[#4d7ad2]' : 'hover:text-white'}`}>Completed</p>
           </div>
 
           <p className=" tracking-widest text-[14px] hover:text-white cursor-pointer">Clear Completed</p>
