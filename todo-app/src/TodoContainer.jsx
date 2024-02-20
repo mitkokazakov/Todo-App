@@ -11,7 +11,12 @@ const TodoContainer = () => {
   const [todolist, setTodolist] = useState(todo);
 
   useEffect(() => {
+
+
     setTodolist(todo);
+
+    
+
   }, [todolist, activeState]);
 
   console.log(todolist);
@@ -103,7 +108,9 @@ const TodoContainer = () => {
           : null}
 
         <div className="w-full flex justify-between items-center bg-[#25273c] text-[#51526e] pt-5 pb-5 pl-3 pr-5 shadow-2xl">
-          <p className=" tracking-widest text-[14px]">5 items left</p>
+          <p className=" tracking-widest text-[14px]">{todolist && todolist.filter(t => {
+      return t.isFinished == false && t.isDeleted == false;
+    }).length} items left</p>
 
           <div className=" hidden md:flex justify-center items-center gap-5 bg-[#25273c] text-[#4c4e63] ">
             <p
