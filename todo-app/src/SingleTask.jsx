@@ -3,16 +3,30 @@ import React, { useEffect, useState } from 'react'
 import cross from "./images/icon-cross.svg";
 import check from "./images/icon-check.svg";
 
-const SingleTask = ({isChecked}) => {
+const SingleTask = ({isChecked,title,id,setTodo}) => {
 
   const [checked, setChecked] = useState(isChecked);
 
   useEffect(() => {
 
+    setChecked(isChecked);
+
   },[checked]);
 
   function OnClickRoundBtn(){
     setChecked(!checked);
+
+    setTodo(t => {
+      let current = t.find(x => x.id == id);
+
+      if(current.isFinished == true){
+        current.isFinished = false;
+      }
+      else{
+        current.isFinished = true;
+      }
+      
+    });
   }
 
   return (
@@ -22,7 +36,7 @@ const SingleTask = ({isChecked}) => {
                 <img className={`absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] ${checked ? 'opacity-100' : 'opacity-0'} duration-500`} src={check} alt="" />
             </div>
           </div>
-          <p className={`w-full bg-transparent ml-3 tracking-wider duration-500 ${checked ? 'line-through text-[#4c4e63]' : ''}`}> Morning run on the lake</p>
+          <p className={`w-full bg-transparent ml-3 tracking-wider duration-500 ${checked ? 'line-through text-[#4c4e63]' : ''}`}>{title}</p>
           <img className="pr-5 opacity-0 cursor-pointer group-hover:opacity-100 duration-500" src={cross} alt="" />
         </div>
   )

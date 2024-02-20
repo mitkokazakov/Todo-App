@@ -1,11 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import sun from "./images/icon-sun.svg";
 import SingleTask from "./SingleTask";
 
+import todo from './todolist.js';
+
 const TodoContainer = () => {
 
   const [activeState, setActiveState] = useState();
+
+  const [todolist, setTodolist] = useState();
+
+  useEffect(() => {
+
+    setTodolist(todo);
+  }, [todolist]);
+
+  console.log(todolist);
 
   return (
     <div className="w-[90%] mr-auto ml-auto text-white flex flex-col justify-center items-center gap-5 translate-y-[-150px] md:w-[700px] md:translate-y-[-200px]">
@@ -28,13 +39,12 @@ const TodoContainer = () => {
 
       <div className="w-full rounded-md overflow-hidden flex flex-col divide-y divide-[#36384d]">
 
-        <SingleTask isChecked={true} />
-        <SingleTask isChecked={false} />
-        <SingleTask isChecked={true} />
-        <SingleTask isChecked={true} />
-        <SingleTask isChecked={true} />
-        <SingleTask isChecked={true} />
-        <SingleTask isChecked={true} />
+        
+        {
+          todo.map(t => {
+            return <SingleTask key={t.id} title={t.title} id={t.id} isChecked={t.isFinished} setTodo={setTodolist}/>
+          })
+        }
 
 
 
