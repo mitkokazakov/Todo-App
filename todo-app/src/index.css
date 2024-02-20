@@ -14,9 +14,15 @@ body {
 }
 
 .head-img{
-  background-image: url('./images/bg-mobile-dark.jpg');
+  background-image: url('./images/bg-desktop-dark.jpg');
   background-position: center;
   background-size: cover;
+}
+
+@media screen and (max-width: 700px){
+  .head-img{
+    background-image: url('./images/bg-mobile-dark.jpg');
+  }
 }
 
 
