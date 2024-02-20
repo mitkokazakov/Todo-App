@@ -9,7 +9,9 @@ const TodoContainer = () => {
 
   const [activeState, setActiveState] = useState();
 
-  const [todolist, setTodolist] = useState();
+  const [todolist, setTodolist] = useState(todo);
+
+  const [filteredTodo, setFiltered] = useState();
 
   useEffect(() => {
 
@@ -41,7 +43,7 @@ const TodoContainer = () => {
 
         
         {
-          todo.map(t => {
+          todo.filter((t) => { return t.isDeleted == false}).map(t => {
             return <SingleTask key={t.id} title={t.title} id={t.id} isChecked={t.isFinished} setTodo={setTodolist}/>
           })
         }

@@ -25,7 +25,20 @@ const SingleTask = ({isChecked,title,id,setTodo}) => {
       else{
         current.isFinished = true;
       }
-      
+    });
+  }
+
+  function OnClickDeleteButton(){
+    setTodo(t => {
+      let current = t.find(x => x.id == id);
+
+      current.isDeleted = true;
+
+      // let newTodo = t.filter((obj) =>{
+      //   return obj.id != id;
+      // })
+
+      // return newTodo;
     });
   }
 
@@ -37,7 +50,7 @@ const SingleTask = ({isChecked,title,id,setTodo}) => {
             </div>
           </div>
           <p className={`w-full bg-transparent ml-3 tracking-wider duration-500 ${checked ? 'line-through text-[#4c4e63]' : ''}`}>{title}</p>
-          <img className="pr-5 opacity-0 cursor-pointer group-hover:opacity-100 duration-500" src={cross} alt="" />
+          <img className="pr-5 opacity-0 cursor-pointer group-hover:opacity-100 duration-500" src={cross} alt="" onClick={OnClickDeleteButton} />
         </div>
   )
 }
