@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 import sun from "./images/icon-sun.svg";
+import moon from "./images/icon-moon.svg";
+
+
 import SingleTask from "./SingleTask";
 
 import todo from "./todolist.js";
@@ -14,17 +17,19 @@ const TodoContainer = () => {
 
   const [filtered, setFiltered] = useState(0);
 
-  useEffect(() => {
+  const [theme, setTheme] = useState('dark');
+  
 
+  useEffect(() => {
     //setTodolist(todo);
 
-    if(todolist){
-
-      setFiltered(todolist.filter(t => {
-        return t.isFinished == false && t.isDeleted == false;
-      }).length);
+    if (todolist) {
+      setFiltered(
+        todolist.filter((t) => {
+          return t.isFinished == false && t.isDeleted == false;
+        }).length
+      );
     }
-
   }, [todolist, activeState]);
 
   function ClearAllCompletedTasks() {
@@ -63,12 +68,24 @@ const TodoContainer = () => {
     setInputTask(currentInput);
   }
 
+  function OnCLickDarkLightTheme(){
+    if(theme == 'dark'){
+      setTheme('light');
+    }
+    else{
+      setTheme('dark');
+    }
+  }
+
   return (
     <div className="w-[90%] mr-auto ml-auto text-white flex flex-col justify-center items-center gap-5 translate-y-[-150px] md:w-[700px] md:translate-y-[-200px]">
       <div className=" flex justify-between items-center w-full">
         <p className=" text-3xl font-bold tracking-widest">T O D O</p>
 
-        <img className="w-6 h-6 cursor-pointer" src={sun} alt="" />
+        <div  className="w-6 h-6 cursor-pointer relative">
+          <img className={`w-full h-full cursor-pointer absolute top-0 left-0 duration-500 ${theme != 'dark' ? 'opacity-1000' : 'opacity-0'}`} src={moon} alt="" onClick={OnCLickDarkLightTheme}/>
+          <img className={`w-full h-full cursor-pointer absolute top-0 left-0 duration-500 ${theme == 'dark' ? 'opacity-100' : 'opacity-0'}`} src={sun} alt="" onClick={OnCLickDarkLightTheme}/>
+        </div>
       </div>
 
       <div className="w-full flex items-center bg-[#25273c] text-white rounded-md pl-3">
