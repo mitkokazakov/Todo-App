@@ -10,16 +10,24 @@ const TodoContainer = () => {
 
   const [todolist, setTodolist] = useState(todo);
 
+  const [inputTask, setInputTask] = useState("");
+
+  const [filtered, setFiltered] = useState(0);
+
   useEffect(() => {
 
+    console.log(todolist);
 
-    setTodolist(todo);
+    //setTodolist(todo);
 
-    
+    // if(todolist){
+
+    //   setFiltered(todolist.filter(t => {
+    //     return t.isFinished == false && t.isDeleted == false;
+    //   }).length);
+    // }
 
   }, [todolist, activeState]);
-
-  console.log(todolist);
 
   function ClearAllCompletedTasks() {
     setTodolist((t) => {
@@ -31,6 +39,30 @@ const TodoContainer = () => {
         }
       });
     });
+  }
+
+  function PressEnterKeyOnInput(e) {
+    if (e.key == "Enter" && inputTask != "" && inputTask.length > 1) {
+      console.log(e.key);
+
+      setTodolist((oldArray) => [
+        ...oldArray,
+        {
+          id: todolist.length + 1,
+          title: inputTask,
+          isDeleted: false,
+          isFinished: false,
+        },
+      ]);
+
+      setInputTask("");
+    }
+  }
+
+  function SetInputTaskOnChange(e) {
+    let currentInput = e.target.value;
+
+    setInputTask(currentInput);
   }
 
   return (
@@ -49,12 +81,15 @@ const TodoContainer = () => {
           className="w-full bg-transparent pt-5 pb-5 pr-7 pl-3 border-none outline-none"
           type="text"
           placeholder="Add new task"
+          value={inputTask}
+          onKeyDown={PressEnterKeyOnInput}
+          onChange={SetInputTaskOnChange}
         />
       </div>
 
       <div className="w-full rounded-md overflow-hidden flex flex-col divide-y divide-[#36384d]">
-        {activeState == 1
-          ? todo
+        {activeState == 1 && todolist
+          ? todolist
               .filter((t) => {
                 return t.isDeleted == false;
               })
@@ -71,8 +106,8 @@ const TodoContainer = () => {
               })
           : null}
 
-        {activeState == 2
-          ? todo
+        {activeState == 2 && todolist
+          ? todolist
               .filter((t) => {
                 return t.isFinished == false && t.isDeleted == false;
               })
@@ -89,8 +124,8 @@ const TodoContainer = () => {
               })
           : null}
 
-        {activeState == 3
-          ? todo
+        {activeState == 3 && todolist
+          ? todolist
               .filter((t) => {
                 return t.isFinished == true && t.isDeleted == false;
               })
@@ -108,9 +143,7 @@ const TodoContainer = () => {
           : null}
 
         <div className="w-full flex justify-between items-center bg-[#25273c] text-[#51526e] pt-5 pb-5 pl-3 pr-5 shadow-2xl">
-          <p className=" tracking-widest text-[14px]">{todolist && todolist.filter(t => {
-      return t.isFinished == false && t.isDeleted == false;
-    }).length} items left</p>
+          <p className=" tracking-widest text-[14px]">{filtered} items left</p>
 
           <div className=" hidden md:flex justify-center items-center gap-5 bg-[#25273c] text-[#4c4e63] ">
             <p
@@ -151,7 +184,10 @@ const TodoContainer = () => {
             </p>
           </div>
 
-          <p className=" tracking-widest text-[14px] hover:text-white cursor-pointer" onClick={ClearAllCompletedTasks}>
+          <p
+            className=" tracking-widest text-[14px] hover:text-white cursor-pointer"
+            onClick={ClearAllCompletedTasks}
+          >
             Clear Completed
           </p>
         </div>

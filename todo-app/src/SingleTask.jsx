@@ -11,35 +11,46 @@ const SingleTask = ({ isChecked, title, id, setTodo }) => {
   }, []);
 
   function OnClickRoundBtn() {
-    setChecked(!checked);
+    //setChecked(!checked);
 
-    setTodo((t) => {
-      let current = t.find((x) => x.id == id);
+    setTodo(prevArr => {
+       
+      let newArr = prevArr.map(x => {
+        if(x.id == id){
 
-      if (current.isFinished == true) {
-        current.isFinished = false;
-      } else {
-        current.isFinished = true;
-        console.log(true);
-      }
+          if(x.isFinished == false){
+            return {...x, isFinished: true};
+          }
+          else{
+            return {...x, isFinished: false};
+          }
+          
+        }
+        else{ 
+            return x;
+        }
+      })
+
+      return newArr;
+      
     });
   }
 
   function OnClickDeleteButton() {
-    setTodo((t) => {
-      let current = t.find(x => x.id == id);
 
-      current.isDeleted = true;
+    setTodo(prevArr => {
+       
+      let newArr = prevArr.map(x => {
+        if(x.id == id){
+          return {...x, isDeleted: true};
+        }
+        else{ 
+            return x;
+        }
+      })
 
-      // return t.filter((obj) => {
-      //   return obj.id != id;
-      // });
-
-      // let newTodo = t.filter((obj) =>{
-      //   return obj.id != id;
-      // })
-
-      // return newTodo;
+      return newArr;
+      
     });
   }
 
@@ -48,7 +59,7 @@ const SingleTask = ({ isChecked, title, id, setTodo }) => {
       <div className="relative">
         <div
           className={`relative w-6 h-6 ${
-            checked
+            isChecked
               ? "bg-gradient-to-r from-[#70bdfb] to-[#a476e8]"
               : "bg-transparent"
           } rounded-full border-[2px] cursor-pointer border-[#323449] hover:border-[#70bdfb] duration-500`}
@@ -56,7 +67,7 @@ const SingleTask = ({ isChecked, title, id, setTodo }) => {
         >
           <img
             className={`absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] ${
-              checked ? "opacity-100" : "opacity-0"
+              isChecked ? "opacity-100" : "opacity-0"
             } duration-500`}
             src={check}
             alt=""
@@ -65,7 +76,7 @@ const SingleTask = ({ isChecked, title, id, setTodo }) => {
       </div>
       <p
         className={`w-full bg-transparent ml-3 tracking-wider duration-500 ${
-          checked ? "line-through text-[#4c4e63]" : ""
+          isChecked ? "line-through text-[#4c4e63]" : ""
         }`}
       >
         {title}

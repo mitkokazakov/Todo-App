@@ -9,6 +9,9 @@ The designs were created to the following widths:
 
 ## Colors
 bg-gradient-to-r from-[#70bdfb] to-[#a476e8]
+todolist && todolist.filter(t => {
+      return t.isFinished == false && t.isDeleted == false;
+    }).length
 ### Primary
 
 - Bright Blue: hsl(220, 98%, 61%)
