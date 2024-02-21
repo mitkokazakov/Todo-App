@@ -16,16 +16,14 @@ const TodoContainer = () => {
 
   useEffect(() => {
 
-    console.log(todolist);
-
     //setTodolist(todo);
 
-    // if(todolist){
+    if(todolist){
 
-    //   setFiltered(todolist.filter(t => {
-    //     return t.isFinished == false && t.isDeleted == false;
-    //   }).length);
-    // }
+      setFiltered(todolist.filter(t => {
+        return t.isFinished == false && t.isDeleted == false;
+      }).length);
+    }
 
   }, [todolist, activeState]);
 
