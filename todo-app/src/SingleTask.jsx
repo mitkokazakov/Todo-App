@@ -55,14 +55,14 @@ const SingleTask = ({ isChecked, title, id, setTodo }) => {
   }
 
   return (
-    <div className="group w-full flex items-center bg-[#25273c] text-[#b2b4cd] pt-5 pb-5 pl-3">
+    <div className="group w-full flex items-center bg-[white] text-[#323449] pt-5 pb-5 pl-3 dark:bg-[#25273c] dark:text-[#b2b4cd]">
       <div className="relative">
         <div
           className={`relative w-6 h-6 ${
             isChecked
-              ? "bg-gradient-to-r from-[#70bdfb] to-[#a476e8]"
-              : "bg-transparent"
-          } rounded-full border-[2px] cursor-pointer border-[#323449] hover:border-[#70bdfb] duration-500`}
+              ? "bg-gradient-to-r from-[#70bdfb] to-[#a476e8] border-none"
+              : "bg-transparent border-[#a3a4b5] dark:border-[#484a61]"
+          } rounded-full border-[1px] cursor-pointer hover:border-[#70bdfb] duration-500`}
           onClick={OnClickRoundBtn}
         >
           <img

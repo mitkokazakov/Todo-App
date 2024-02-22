@@ -8,7 +8,7 @@ import SingleTask from "./SingleTask";
 
 import todo from "./todolist.js";
 
-const TodoContainer = () => {
+const TodoContainer = ({darkThemeHandler}) => {
   const [activeState, setActiveState] = useState(1);
 
   const [todolist, setTodolist] = useState(todo);
@@ -17,7 +17,7 @@ const TodoContainer = () => {
 
   const [filtered, setFiltered] = useState(0);
 
-  const [theme, setTheme] = useState('dark');
+ 
   
 
   useEffect(() => {
@@ -68,14 +68,7 @@ const TodoContainer = () => {
     setInputTask(currentInput);
   }
 
-  function OnCLickDarkLightTheme(){
-    if(theme == 'dark'){
-      setTheme('light');
-    }
-    else{
-      setTheme('dark');
-    }
-  }
+  
 
   return (
     <div className="w-[90%] mr-auto ml-auto text-white flex flex-col justify-center items-center gap-5 translate-y-[-150px] md:w-[700px] md:translate-y-[-200px]">
@@ -83,17 +76,17 @@ const TodoContainer = () => {
         <p className=" text-3xl font-bold tracking-widest">T O D O</p>
 
         <div  className="w-6 h-6 cursor-pointer relative">
-          <img className={`w-full h-full cursor-pointer absolute top-0 left-0 duration-500 ${theme != 'dark' ? 'opacity-1000' : 'opacity-0'}`} src={moon} alt="" onClick={OnCLickDarkLightTheme}/>
-          <img className={`w-full h-full cursor-pointer absolute top-0 left-0 duration-500 ${theme == 'dark' ? 'opacity-100' : 'opacity-0'}`} src={sun} alt="" onClick={OnCLickDarkLightTheme}/>
+          <img className={`w-full h-full cursor-pointer absolute top-0 left-0 duration-500 opacity-100 dark:opacity-0`} src={moon} alt="" onClick={darkThemeHandler}/>
+          <img className={`w-full h-full cursor-pointer absolute top-0 left-0 duration-500 opacity-0 dark:opacity-100`} src={sun} alt="" onClick={darkThemeHandler}/>
         </div>
       </div>
 
-      <div className="w-full flex items-center bg-[#25273c] text-white rounded-md pl-3">
+      <div className="w-full flex items-center bg-[white] text-[#323449] rounded-md pl-3 dark:bg-[#25273c] dark:text-white">
         <div>
-          <div className="w-6 h-6 bg-transparent rounded-full border-[2px] border-[#323449]"></div>
+          <div className="w-6 h-6 bg-transparent rounded-full border-[1px] border-[#a3a4b5] dark:border-[#484a61]"></div>
         </div>
         <input
-          className="w-full bg-transparent pt-5 pb-5 pr-7 pl-3 border-none outline-none"
+          className="w-full bg-transparent pt-5 pb-5 pr-7 pl-3 border-none outline-none "
           type="text"
           placeholder="Add new task"
           value={inputTask}
@@ -102,7 +95,7 @@ const TodoContainer = () => {
         />
       </div>
 
-      <div className="w-full rounded-md overflow-hidden flex flex-col divide-y divide-[#36384d]">
+      <div className="w-full rounded-md overflow-hidden flex flex-col divide-y divide-[#ebeaee] dark:divide-[#36384d] shadow-2xl">
         {activeState == 1 && todolist
           ? todolist
               .filter((t) => {
@@ -157,10 +150,10 @@ const TodoContainer = () => {
               })
           : null}
 
-        <div className="w-full flex justify-between items-center bg-[#25273c] text-[#51526e] pt-5 pb-5 pl-3 pr-5 shadow-2xl">
+        <div className="w-full flex justify-between items-center bg-white text-[#a1a0a6] dark:text-[#51526e] dark:bg-[#25273c] pt-5 pb-5 pl-3 pr-5 shadow-2xl">
           <p className=" tracking-widest text-[14px]">{filtered} items left</p>
 
-          <div className=" hidden md:flex justify-center items-center gap-5 bg-[#25273c] text-[#4c4e63] ">
+          <div className=" hidden md:flex justify-center items-center gap-5 bg-white dark:bg-[#25273c] text-[#4c4e63] ">
             <p
               onClick={() => {
                 setActiveState(1);
@@ -168,7 +161,7 @@ const TodoContainer = () => {
               className={`tracking-widest cursor-pointer text-[16px] ${
                 activeState == 1
                   ? "text-[#4d7ad2] hover:text-[#4d7ad2]"
-                  : "hover:text-white"
+                  : "hover:text-black dark:hover:text-white"
               }`}
             >
               All
@@ -180,7 +173,7 @@ const TodoContainer = () => {
               className={`tracking-widest cursor-pointer text-[16px] ${
                 activeState == 2
                   ? "text-[#4d7ad2] hover:text-[#4d7ad2]"
-                  : "hover:text-white"
+                  : "hover:text-black dark:hover:text-white"
               }`}
             >
               Active
@@ -192,7 +185,7 @@ const TodoContainer = () => {
               className={`tracking-widest cursor-pointer text-[16px] ${
                 activeState == 3
                   ? "text-[#4d7ad2] hover:text-[#4d7ad2]"
-                  : "hover:text-white"
+                  : "hover:text-black dark:hover:text-white"
               }`}
             >
               Completed
@@ -200,7 +193,7 @@ const TodoContainer = () => {
           </div>
 
           <p
-            className=" tracking-widest text-[14px] hover:text-white cursor-pointer"
+            className=" tracking-widest text-[14px] hover:text-black dark:hover:text-white cursor-pointer"
             onClick={ClearAllCompletedTasks}
           >
             Clear Completed
@@ -208,7 +201,7 @@ const TodoContainer = () => {
         </div>
       </div>
 
-      <div className=" md:hidden w-full flex justify-center items-center gap-5 bg-[#25273c] text-[#4c4e63] pt-5 pb-5 pl-3 pr-5 shadow-2xl rounded-md">
+      <div className=" md:hidden w-full flex justify-center items-center gap-5 bg-white text-[#a1a0a6] dark:text-[#51526e] dark:bg-[#25273c] pt-5 pb-5 pl-3 pr-5 shadow-2xl rounded-md">
         <p
           onClick={() => {
             setActiveState(1);
@@ -216,7 +209,7 @@ const TodoContainer = () => {
           className={`tracking-widest cursor-pointer text-[16px] ${
             activeState == 1
               ? "text-[#4d7ad2] hover:text-[#4d7ad2]"
-              : "hover:text-white"
+              : "hover:text-black dark:hover:text-white"
           }`}
         >
           All
@@ -228,7 +221,7 @@ const TodoContainer = () => {
           className={`tracking-widest cursor-pointer text-[16px] ${
             activeState == 2
               ? "text-[#4d7ad2] hover:text-[#4d7ad2]"
-              : "hover:text-white"
+              : "hover:text-black dark:hover:text-white"
           }`}
         >
           Active
@@ -240,7 +233,7 @@ const TodoContainer = () => {
           className={`tracking-widest cursor-pointer text-[16px] ${
             activeState == 3
               ? "text-[#4d7ad2] hover:text-[#4d7ad2]"
-              : "hover:text-white"
+              : "hover:text-black dark:hover:text-white"
           }`}
         >
           Completed

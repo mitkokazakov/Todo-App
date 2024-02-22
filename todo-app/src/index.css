@@ -17,11 +17,22 @@ body {
   background-image: url('./images/bg-desktop-dark.jpg');
   background-position: center;
   background-size: cover;
+  /* transition: all 200ms linear; */
+}
+
+.head-img.light-img{
+  background-image: url('./images/bg-desktop-light.jpg');
+  background-position: center;
+  background-size: cover;
 }
 
 @media screen and (max-width: 700px){
   .head-img{
     background-image: url('./images/bg-mobile-dark.jpg');
+  }
+
+  .head-img.light-img{
+    background-image: url('./images/bg-mobile-light.jpg');
   }
 }
 
