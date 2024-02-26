@@ -17,8 +17,7 @@ const TodoContainer = ({darkThemeHandler}) => {
 
   const [filtered, setFiltered] = useState(0);
 
- 
-  
+  const [currentDragItemIndex, setCurrentDragItemIndex] = useState(0);
 
   useEffect(() => {
     //setTodolist(todo);
@@ -69,6 +68,8 @@ const TodoContainer = ({darkThemeHandler}) => {
   }
 
   
+console.log(currentDragItemIndex);
+  
 
   return (
     <div className="w-[90%] mr-auto ml-auto text-white flex flex-col justify-center items-center gap-5 translate-y-[-150px] md:w-[700px] md:translate-y-[-200px]">
@@ -101,7 +102,7 @@ const TodoContainer = ({darkThemeHandler}) => {
               .filter((t) => {
                 return t.isDeleted == false;
               })
-              .map((t) => {
+              .map((t,index) => {
                 return (
                   <SingleTask
                     key={t.id}
@@ -109,6 +110,8 @@ const TodoContainer = ({darkThemeHandler}) => {
                     id={t.id}
                     isChecked={t.isFinished}
                     setTodo={setTodolist}
+                    idx={index}
+                    itemIdx={setCurrentDragItemIndex}
                   />
                 );
               })

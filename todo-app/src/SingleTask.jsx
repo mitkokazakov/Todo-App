@@ -3,8 +3,12 @@ import React, { useEffect, useState } from "react";
 import cross from "./images/icon-cross.svg";
 import check from "./images/icon-check.svg";
 
-const SingleTask = ({ isChecked, title, id, setTodo }) => {
+const SingleTask = ({ isChecked, title, id, setTodo, idx,itemIdx }) => {
+
   const [checked, setChecked] = useState(isChecked);
+
+  const [currentDragItemIndex, setCurrentDragItemIndex] = useState(0);
+  const [dragOverItemIndex, setDragOverItemIndex] = useState(0);
 
   useEffect(() => {
     setChecked(isChecked);
@@ -54,8 +58,18 @@ const SingleTask = ({ isChecked, title, id, setTodo }) => {
     });
   }
 
+  function setset(){
+    itemIdx(idx);
+  }
+
   return (
-    <div className="group w-full flex items-center bg-[white] text-[#323449] pt-5 pb-5 pl-3 dark:bg-[#25273c] dark:text-[#b2b4cd]">
+    <div className="group w-full flex items-center bg-[white] text-[#323449] pt-5 pb-5 pl-3 dark:bg-[#25273c] dark:text-[#b2b4cd] cursor-grab" draggable 
+    onDragStart={() => {}}
+    onDragOver={(event) => {event.preventDefault()}}
+    onDrop={() => { }}
+    onDragEnter={() => {}}
+    onDragLeave={() => {}}
+    onDragEnd={setset}>
       <div className="relative">
         <div
           className={`relative w-6 h-6 ${
