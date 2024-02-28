@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 
+import { ReactSortable } from "react-sortablejs";
+
 import sun from "./images/icon-sun.svg";
 import moon from "./images/icon-moon.svg";
-
 
 import SingleTask from "./SingleTask";
 
@@ -70,9 +71,11 @@ const TodoContainer = ({ darkThemeHandler }) => {
   }
 
   function SortItems() {
-    console.log(`Start is ${currentDragItemIndex}  Last is ${dragOverItemIndex}`);
+    console.log(
+      `Start is ${currentDragItemIndex}  Last is ${dragOverItemIndex}`
+    );
 
-    setTodolist(prevArr => {
+    setTodolist((prevArr) => {
       let newArr = [...prevArr];
 
       const temp = newArr[currentDragItemIndex];
@@ -83,15 +86,24 @@ const TodoContainer = ({ darkThemeHandler }) => {
     });
   }
 
-
   return (
     <div className="w-[90%] mr-auto ml-auto text-white flex flex-col justify-center items-center gap-5 translate-y-[-150px] md:w-[700px] md:translate-y-[-200px]">
       <div className=" flex justify-between items-center w-full">
         <p className=" text-3xl font-bold tracking-widest">T O D O</p>
 
         <div className="w-6 h-6 cursor-pointer relative">
-          <img className={`w-full h-full cursor-pointer absolute top-0 left-0 duration-500 opacity-100 dark:opacity-0`} src={moon} alt="" onClick={darkThemeHandler} />
-          <img className={`w-full h-full cursor-pointer absolute top-0 left-0 duration-500 opacity-0 dark:opacity-100`} src={sun} alt="" onClick={darkThemeHandler} />
+          <img
+            className={`w-full h-full cursor-pointer absolute top-0 left-0 duration-500 opacity-100 dark:opacity-0`}
+            src={moon}
+            alt=""
+            onClick={darkThemeHandler}
+          />
+          <img
+            className={`w-full h-full cursor-pointer absolute top-0 left-0 duration-500 opacity-0 dark:opacity-100`}
+            src={sun}
+            alt=""
+            onClick={darkThemeHandler}
+          />
         </div>
       </div>
 
@@ -106,75 +118,74 @@ const TodoContainer = ({ darkThemeHandler }) => {
           value={inputTask}
           onKeyDown={PressEnterKeyOnInput}
           onChange={SetInputTaskOnChange}
-
         />
       </div>
 
       <div className="w-full rounded-md overflow-hidden flex flex-col divide-y divide-[#ebeaee] dark:divide-[#36384d] shadow-2xl">
         {activeState == 1 && todolist
           ? todolist
-            .filter((t) => {
-              return t.isDeleted == false;
-            })
-            .map((t, index) => {
-              return (
-                <SingleTask
-                  key={t.id}
-                  title={t.title}
-                  id={t.id}
-                  isChecked={t.isFinished}
-                  setTodo={setTodolist}
-                  idx={index}
-                  itemIdx={setCurrentDragItemIndex}
-                  dropIndex={setDragOverItemIndex}
-                  sortItems={SortItems}
-                />
-              );
-            })
+              .filter((t) => {
+                return t.isDeleted == false;
+              })
+              .map((t, index) => {
+                return (
+                  <SingleTask
+                    key={t.id}
+                    title={t.title}
+                    id={t.id}
+                    isChecked={t.isFinished}
+                    setTodo={setTodolist}
+                    idx={index}
+                    itemIdx={setCurrentDragItemIndex}
+                    dropIndex={setDragOverItemIndex}
+                    sortItems={SortItems}
+                  />
+                );
+              })
           : null}
 
         {activeState == 2 && todolist
           ? todolist
-            .filter((t) => {
-              return t.isFinished == false && t.isDeleted == false;
-            })
-            .map((t,index) => {
-              return (
-                <SingleTask
-                  key={t.id}
-                  title={t.title}
-                  id={t.id}
-                  isChecked={t.isFinished}
-                  setTodo={setTodolist}
-                  idx={index}
-                  itemIdx={setCurrentDragItemIndex}
-                  dropIndex={setDragOverItemIndex}
-                  sortItems={SortItems}
-                />
-              );
-            })
+              .filter((t) => {
+                return t.isFinished == false && t.isDeleted == false;
+              })
+              .map((t, index) => {
+                return (
+                  <SingleTask
+                    key={t.id}
+                    title={t.title}
+                    id={t.id}
+                    isChecked={t.isFinished}
+                    setTodo={setTodolist}
+                    idx={index}
+                    itemIdx={setCurrentDragItemIndex}
+                    dropIndex={setDragOverItemIndex}
+                    sortItems={SortItems}
+                  />
+                );
+              })
           : null}
 
         {activeState == 3 && todolist
           ? todolist
-            .filter((t) => {
-              return t.isFinished == true && t.isDeleted == false;
-            })
-            .map((t,index) => {
-              return (
-                <SingleTask
-                  key={t.id}
-                  title={t.title}
-                  id={t.id}
-                  isChecked={t.isFinished}
-                  setTodo={setTodolist}
-                  idx={index}
-                  itemIdx={setCurrentDragItemIndex}
-                  dropIndex={setDragOverItemIndex}
-                  sortItems={SortItems}
-                />
-              );
-            })
+              .filter((t) => {
+                return t.isFinished == true && t.isDeleted == false;
+              })
+              .map((t, index) => {
+                return (
+                  <SingleTask
+                    key={t.id}
+                    title={t.title}
+                    id={t.id}
+                    isChecked={t.isFinished}
+                    setTodo={setTodolist}
+                    idx={index}
+                    itemIdx={setCurrentDragItemIndex}
+                    dropIndex={setDragOverItemIndex}
+                    sortItems={SortItems}
+                  />
+                );
+              })
           : null}
 
         <div className="w-full flex justify-between items-center bg-white text-[#a1a0a6] dark:text-[#51526e] dark:bg-[#25273c] pt-5 pb-5 pl-3 pr-5 shadow-2xl">
@@ -185,10 +196,11 @@ const TodoContainer = ({ darkThemeHandler }) => {
               onClick={() => {
                 setActiveState(1);
               }}
-              className={`tracking-widest cursor-pointer text-[16px] ${activeState == 1
+              className={`tracking-widest cursor-pointer text-[16px] ${
+                activeState == 1
                   ? "text-[#4d7ad2] hover:text-[#4d7ad2]"
                   : "hover:text-black dark:hover:text-white"
-                }`}
+              }`}
             >
               All
             </p>
@@ -196,10 +208,11 @@ const TodoContainer = ({ darkThemeHandler }) => {
               onClick={() => {
                 setActiveState(2);
               }}
-              className={`tracking-widest cursor-pointer text-[16px] ${activeState == 2
+              className={`tracking-widest cursor-pointer text-[16px] ${
+                activeState == 2
                   ? "text-[#4d7ad2] hover:text-[#4d7ad2]"
                   : "hover:text-black dark:hover:text-white"
-                }`}
+              }`}
             >
               Active
             </p>
@@ -207,10 +220,11 @@ const TodoContainer = ({ darkThemeHandler }) => {
               onClick={() => {
                 setActiveState(3);
               }}
-              className={`tracking-widest cursor-pointer text-[16px] ${activeState == 3
+              className={`tracking-widest cursor-pointer text-[16px] ${
+                activeState == 3
                   ? "text-[#4d7ad2] hover:text-[#4d7ad2]"
                   : "hover:text-black dark:hover:text-white"
-                }`}
+              }`}
             >
               Completed
             </p>
@@ -230,10 +244,11 @@ const TodoContainer = ({ darkThemeHandler }) => {
           onClick={() => {
             setActiveState(1);
           }}
-          className={`tracking-widest cursor-pointer text-[16px] ${activeState == 1
+          className={`tracking-widest cursor-pointer text-[16px] ${
+            activeState == 1
               ? "text-[#4d7ad2] hover:text-[#4d7ad2]"
               : "hover:text-black dark:hover:text-white"
-            }`}
+          }`}
         >
           All
         </p>
@@ -241,10 +256,11 @@ const TodoContainer = ({ darkThemeHandler }) => {
           onClick={() => {
             setActiveState(2);
           }}
-          className={`tracking-widest cursor-pointer text-[16px] ${activeState == 2
+          className={`tracking-widest cursor-pointer text-[16px] ${
+            activeState == 2
               ? "text-[#4d7ad2] hover:text-[#4d7ad2]"
               : "hover:text-black dark:hover:text-white"
-            }`}
+          }`}
         >
           Active
         </p>
@@ -252,10 +268,11 @@ const TodoContainer = ({ darkThemeHandler }) => {
           onClick={() => {
             setActiveState(3);
           }}
-          className={`tracking-widest cursor-pointer text-[16px] ${activeState == 3
+          className={`tracking-widest cursor-pointer text-[16px] ${
+            activeState == 3
               ? "text-[#4d7ad2] hover:text-[#4d7ad2]"
               : "hover:text-black dark:hover:text-white"
-            }`}
+          }`}
         >
           Completed
         </p>

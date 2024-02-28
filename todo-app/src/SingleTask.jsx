@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import cross from "./images/icon-cross.svg";
 import check from "./images/icon-check.svg";
 
-const SingleTask = ({ isChecked, title, id, setTodo, idx,itemIdx,dropIndex,sortItems }) => {
+const SingleTask = ({ isChecked, title, id, setTodo,idx,itemIdx,dropIndex,sortItems  }) => {
 
   const [checked, setChecked] = useState(isChecked);
 

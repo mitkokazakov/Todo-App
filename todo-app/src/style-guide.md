@@ -47,3 +47,21 @@ todolist && todolist.filter(t => {
 
 - Family: [Josefin Sans](https://fonts.google.com/specimen/Josefin+Sans)
 - Weights: 400, 700
+
+
+idx={index}
+                      itemIdx={setCurrentDragItemIndex}
+                      dropIndex={setDragOverItemIndex}
+                      sortItems={SortItems}
+
+
+                      idx,itemIdx,dropIndex,sortItems
+
+
+
+                      onDragStart={SetStartElementIndex}
+    onDragOver={(event) => {event.preventDefault()}}
+    onDrop={SortItems}
+    onDragEnter={SetEndElementIndex}
+    onDragLeave={() => {}}
+    onDragEnd={() => {}}
