@@ -49,7 +49,7 @@ todolist && todolist.filter(t => {
 - Weights: 400, 700
 
 
-idx={index}
+                      idx={index}
                       itemIdx={setCurrentDragItemIndex}
                       dropIndex={setDragOverItemIndex}
                       sortItems={SortItems}
