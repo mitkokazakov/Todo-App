@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 
-import { Draggable } from "react-beautiful-dnd";
-
 import cross from "./images/icon-cross.svg";
 import check from "./images/icon-check.svg";
 
-const SingleTask = ({ isChecked, title, id, setTodo,idx,itemIdx,dropIndex,sortItems}) => {
+const SingleTask = ({ isChecked, title, id, setTodo}) => {
   const [checked, setChecked] = useState(isChecked);
 
   useEffect(() => {
@@ -46,30 +44,11 @@ const SingleTask = ({ isChecked, title, id, setTodo,idx,itemIdx,dropIndex,sortIt
     });
   }
 
-  function SetStartElementIndex() {
-    itemIdx(idx);
-  }
-
-  function SetEndElementIndex() {
-    dropIndex(idx);
-  }
-
-  function SortItems() {
-    sortItems();
-  }
 
   return (
     <div
       className="group w-full flex items-center bg-[white] text-[#323449] pt-5 pb-5 pl-3 dark:bg-[#25273c] dark:text-[#b2b4cd] cursor-grab"
-      draggable
-      onDragStart={SetStartElementIndex}
-      onDragOver={(event) => {
-        event.preventDefault();
-      }}
-      onDrop={SortItems}
-      onDragEnter={SetEndElementIndex}
-      onDragLeave={() => {}}
-      onDragEnd={() => {}}
+      
     >
       <div className="relative">
         <div

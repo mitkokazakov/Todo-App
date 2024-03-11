@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import { Reorder } from "framer-motion";
 
 import sun from "./images/icon-sun.svg";
 import moon from "./images/icon-moon.svg";
@@ -18,12 +18,7 @@ const TodoContainer = ({ darkThemeHandler }) => {
 
   const [filtered, setFiltered] = useState(0);
 
-  const [currentDragItemIndex, setCurrentDragItemIndex] = useState(0);
-
-  const [dragOverItemIndex, setDragOverItemIndex] = useState(0);
-
   useEffect(() => {
-    //setTodolist(todo);
 
     if (todolist) {
       setFiltered(
@@ -70,24 +65,6 @@ const TodoContainer = ({ darkThemeHandler }) => {
     setInputTask(currentInput);
   }
 
-  function SortItems() {
-    console.log(
-      `Start is ${currentDragItemIndex}  Last is ${dragOverItemIndex}`
-    );
-
-    setTodolist((prevArr) => {
-      let newArr = [...prevArr];
-
-      const temp = newArr[currentDragItemIndex];
-      newArr[currentDragItemIndex] = newArr[dragOverItemIndex];
-      newArr[dragOverItemIndex] = temp;
-
-      return newArr;
-    });
-  }
-
- 
-
   return (
     <div className="w-[90%] mr-auto ml-auto text-white flex flex-col justify-center items-center gap-5 translate-y-[-150px] md:w-[700px] md:translate-y-[-200px]">
       <div className=" flex justify-between items-center w-full">
@@ -125,27 +102,28 @@ const TodoContainer = ({ darkThemeHandler }) => {
 
       <div className="w-full rounded-md overflow-hidden flex flex-col divide-y divide-[#ebeaee] dark:divide-[#36384d] shadow-2xl">
         <div className=" w-full rounded-md overflow-hidden flex flex-col divide-y divide-[#ebeaee] dark:divide-[#36384d] shadow-2xl">
-          {activeState == 1 && todolist
-            ? todolist
-                .filter((t) => {
-                  return t.isDeleted == false;
-                })
-                .map((t, index) => {
-                  return (
-                    <SingleTask
-                      key={t.id}
-                      title={t.title}
-                      id={t.id}
-                      isChecked={t.isFinished}
-                      setTodo={setTodolist}
-                      idx={index}
-                      itemIdx={setCurrentDragItemIndex}
-                      dropIndex={setDragOverItemIndex}
-                      sortItems={SortItems}
-                    />
-                  );
-                })
-            : null}
+          <Reorder.Group axis="y" values={todolist} onReorder={setTodolist}>
+            {activeState == 1 && todolist
+              ? todolist
+                  .filter((t) => {
+                    return t.isDeleted == false;
+                  })
+                  .map((t, index) => {
+                    return (
+                      <Reorder.Item value={t} key={t.id}>
+                        <SingleTask
+                          key={t.id}
+                          title={t.title}
+                          id={t.id}
+                          isChecked={t.isFinished}
+                          setTodo={setTodolist}
+                          idx={index}
+                        />
+                      </Reorder.Item>
+                    );
+                  })
+              : null}
+          </Reorder.Group>
 
           {activeState == 2 && todolist
             ? todolist
@@ -161,9 +139,6 @@ const TodoContainer = ({ darkThemeHandler }) => {
                       isChecked={t.isFinished}
                       setTodo={setTodolist}
                       idx={index}
-                      itemIdx={setCurrentDragItemIndex}
-                      dropIndex={setDragOverItemIndex}
-                      sortItems={SortItems}
                     />
                   );
                 })
@@ -183,9 +158,6 @@ const TodoContainer = ({ darkThemeHandler }) => {
                       isChecked={t.isFinished}
                       setTodo={setTodolist}
                       idx={index}
-                      itemIdx={setCurrentDragItemIndex}
-                      dropIndex={setDragOverItemIndex}
-                      sortItems={SortItems}
                     />
                   );
                 })
