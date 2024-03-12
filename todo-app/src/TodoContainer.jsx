@@ -19,7 +19,6 @@ const TodoContainer = ({ darkThemeHandler }) => {
   const [filtered, setFiltered] = useState(0);
 
   useEffect(() => {
-
     if (todolist) {
       setFiltered(
         todolist.filter((t) => {
@@ -105,35 +104,32 @@ const TodoContainer = ({ darkThemeHandler }) => {
           <Reorder.Group axis="y" values={todolist} onReorder={setTodolist}>
             {activeState == 1 && todolist
               ? todolist
-                .filter((t) => {
-                  return t.isDeleted == false;
-                })
-                .map((t, index) => {
-                  return (
-                    <Reorder.Item value={t} key={t.id}>
-                      <SingleTask
-                        key={t.id}
-                        title={t.title}
-                        id={t.id}
-                        isChecked={t.isFinished}
-                        setTodo={setTodolist}
-                        idx={index}
-                      />
-                    </Reorder.Item>
-                  );
-                })
+                  .filter((t) => {
+                    return t.isDeleted == false;
+                  })
+                  .map((t, index) => {
+                    return (
+                      <Reorder.Item value={t} key={t.id}>
+                        <SingleTask
+                          key={t.id}
+                          title={t.title}
+                          id={t.id}
+                          isChecked={t.isFinished}
+                          setTodo={setTodolist}
+                          idx={index}
+                        />
+                      </Reorder.Item>
+                    );
+                  })
               : null}
-          </Reorder.Group>
 
-          <Reorder.Group axis="y" values={todolist} onReorder={setTodolist}>
             {activeState == 2 && todolist
               ? todolist
-                .filter((t) => {
-                  return t.isFinished == false && t.isDeleted == false;
-                })
-                .map((t, index) => {
-                  return (
-                    <Reorder.Item value={t} key={t.id}>
+                  .filter((t) => {
+                    return t.isFinished == false && t.isDeleted == false;
+                  })
+                  .map((t, index) => {
+                    return (
                       <SingleTask
                         key={t.id}
                         title={t.title}
@@ -142,21 +138,17 @@ const TodoContainer = ({ darkThemeHandler }) => {
                         setTodo={setTodolist}
                         idx={index}
                       />
-                    </Reorder.Item>
-                  );
-                })
+                    );
+                  })
               : null}
-          </Reorder.Group>
 
-          <Reorder.Group axis="y" values={todolist} onReorder={setTodolist}>
             {activeState == 3 && todolist
               ? todolist
-                .filter((t) => {
-                  return t.isFinished == true && t.isDeleted == false;
-                })
-                .map((t, index) => {
-                  return (
-                    <Reorder.Item value={t} key={t.id}>
+                  .filter((t) => {
+                    return t.isFinished == true && t.isDeleted == false;
+                  })
+                  .map((t, index) => {
+                    return (
                       <SingleTask
                         key={t.id}
                         title={t.title}
@@ -165,12 +157,10 @@ const TodoContainer = ({ darkThemeHandler }) => {
                         setTodo={setTodolist}
                         idx={index}
                       />
-                    </Reorder.Item>
-                  );
-                })
+                    );
+                  })
               : null}
           </Reorder.Group>
-
         </div>
 
         <div className="w-full flex justify-between items-center bg-white text-[#a1a0a6] dark:text-[#51526e] dark:bg-[#25273c] pt-5 pb-5 pl-3 pr-5 shadow-2xl">
@@ -181,10 +171,11 @@ const TodoContainer = ({ darkThemeHandler }) => {
               onClick={() => {
                 setActiveState(1);
               }}
-              className={`tracking-widest cursor-pointer text-[16px] ${activeState == 1
-                ? "text-[#4d7ad2] hover:text-[#4d7ad2]"
-                : "hover:text-black dark:hover:text-white"
-                }`}
+              className={`tracking-widest cursor-pointer text-[16px] ${
+                activeState == 1
+                  ? "text-[#4d7ad2] hover:text-[#4d7ad2]"
+                  : "hover:text-black dark:hover:text-white"
+              }`}
             >
               All
             </p>
@@ -192,10 +183,11 @@ const TodoContainer = ({ darkThemeHandler }) => {
               onClick={() => {
                 setActiveState(2);
               }}
-              className={`tracking-widest cursor-pointer text-[16px] ${activeState == 2
-                ? "text-[#4d7ad2] hover:text-[#4d7ad2]"
-                : "hover:text-black dark:hover:text-white"
-                }`}
+              className={`tracking-widest cursor-pointer text-[16px] ${
+                activeState == 2
+                  ? "text-[#4d7ad2] hover:text-[#4d7ad2]"
+                  : "hover:text-black dark:hover:text-white"
+              }`}
             >
               Active
             </p>
@@ -203,10 +195,11 @@ const TodoContainer = ({ darkThemeHandler }) => {
               onClick={() => {
                 setActiveState(3);
               }}
-              className={`tracking-widest cursor-pointer text-[16px] ${activeState == 3
-                ? "text-[#4d7ad2] hover:text-[#4d7ad2]"
-                : "hover:text-black dark:hover:text-white"
-                }`}
+              className={`tracking-widest cursor-pointer text-[16px] ${
+                activeState == 3
+                  ? "text-[#4d7ad2] hover:text-[#4d7ad2]"
+                  : "hover:text-black dark:hover:text-white"
+              }`}
             >
               Completed
             </p>
@@ -226,10 +219,11 @@ const TodoContainer = ({ darkThemeHandler }) => {
           onClick={() => {
             setActiveState(1);
           }}
-          className={`tracking-widest cursor-pointer text-[16px] ${activeState == 1
-            ? "text-[#4d7ad2] hover:text-[#4d7ad2]"
-            : "hover:text-black dark:hover:text-white"
-            }`}
+          className={`tracking-widest cursor-pointer text-[16px] ${
+            activeState == 1
+              ? "text-[#4d7ad2] hover:text-[#4d7ad2]"
+              : "hover:text-black dark:hover:text-white"
+          }`}
         >
           All
         </p>
@@ -237,10 +231,11 @@ const TodoContainer = ({ darkThemeHandler }) => {
           onClick={() => {
             setActiveState(2);
           }}
-          className={`tracking-widest cursor-pointer text-[16px] ${activeState == 2
-            ? "text-[#4d7ad2] hover:text-[#4d7ad2]"
-            : "hover:text-black dark:hover:text-white"
-            }`}
+          className={`tracking-widest cursor-pointer text-[16px] ${
+            activeState == 2
+              ? "text-[#4d7ad2] hover:text-[#4d7ad2]"
+              : "hover:text-black dark:hover:text-white"
+          }`}
         >
           Active
         </p>
@@ -248,10 +243,11 @@ const TodoContainer = ({ darkThemeHandler }) => {
           onClick={() => {
             setActiveState(3);
           }}
-          className={`tracking-widest cursor-pointer text-[16px] ${activeState == 3
-            ? "text-[#4d7ad2] hover:text-[#4d7ad2]"
-            : "hover:text-black dark:hover:text-white"
-            }`}
+          className={`tracking-widest cursor-pointer text-[16px] ${
+            activeState == 3
+              ? "text-[#4d7ad2] hover:text-[#4d7ad2]"
+              : "hover:text-black dark:hover:text-white"
+          }`}
         >
           Completed
         </p>
