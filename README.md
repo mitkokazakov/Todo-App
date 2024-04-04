@@ -1,4 +1,4 @@
-# Frontend Mentor - Todo app - https://drag-drop-todo-list.netlify.app/
+# Frontend Mentor - Todo app 
 
 ![Design preview for the Todo app coding challenge](./todo-app/src/images/desktop-preview.jpg)
 
@@ -54,7 +54,7 @@ Feel free to use any workflow that you feel comfortable with. Below is a suggest
 6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on.
 
 ## Deploying your project
-
+https://drag-drop-todo-list.netlify.app/
 As mentioned above, there are many ways to host your project for free. Our recommended hosts are:
 
 - [GitHub Pages](https://pages.github.com/)
